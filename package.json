@@ -1,7 +1,7 @@
 {
   "name": "googlebooks-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Book Search Engine",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
@@ -10,9 +10,20 @@
     "build": "cd client && npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bill Geng",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine/issues"
+  },
+  "homepage": "https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine#readme",
+  "dependencies": {
+    "jwt-decode": "^3.1.2"
   }
 }

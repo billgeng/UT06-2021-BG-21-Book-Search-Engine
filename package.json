@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine#readme",
   "dependencies": {
-    "apollo-server-express": "^3.5.0",
+    "apollo-server-express": "^3.0.0",
     "jwt-decode": "^3.1.2"
   }
 }

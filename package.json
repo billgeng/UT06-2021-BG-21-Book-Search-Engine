@@ -13,7 +13,8 @@
   "author": "Bill Geng",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "webpack-pwa-manifest": "^4.3.0"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine#readme",
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@reduxjs/toolkit": "^1.6.2",
     "apollo-boost": "^0.4.9",
     "apollo-react-hooks": "^0.0.1",
     "apollo-server-express": "^2.25.3",
@@ -32,6 +34,7 @@
     "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
+    "mongoose": "^6.0.12",
     "web-vitals": "^2.1.2"
   }
 }

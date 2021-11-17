@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import {useQuery,useMutation} from '@apollo/client';
 import {GET_ME} from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
-
+import Auth from '../utils/auth';
 
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  const {loading,data} = useQuery(GET_ME);
 
-  const [userData, setData] = useState(loading ? null:data.me);
+  const {loading, data } = useQuery(GET_ME);
 
   const [removeBook,{error}] = useMutation(REMOVE_BOOK);
+
+  const userData = data?.me || {};
 
   // use this to determine if `useEffect()` hook needs to run again
   // const userDataLength = Object.keys(userData).length;
@@ -44,38 +45,34 @@ const SavedBooks = () => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // if (!token) {
-    //   return false;
-    // }
+    if (!token) {
+      return false;
+    }
 
     try {
-      const data = await removeBook ({
+      const {data} = await removeBook ({
         variables: { bookId},
       });
 
-    //  // const updatedUser = await response.json();
-    //   setUserData(updatedUser);
-    //   // upon success, remove book's id from localStorage
-    //   removeBookId(bookId);
-    setData(()=> {
-      return { 
-        ...userData,
-        savedBooks: data.data.removeBook.savedBooks
-      }
-    })
+      console.log (data);
 
-    } catch (err) {
-      console.error(err);
-    }
+      if (error) {
+        throw new Error('something went wrong!');
+      }
+  
+   
     removeBookId(bookId);
+  } catch (err) {
+    console.error(err);
+  }
   };
 
   // // if data isn't here yet, say so
-  // if (!userDataLength) {
-  //   return <h2>LOADING...</h2>;
-  // }
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>

@@ -5,9 +5,11 @@ import {SAVE_BOOK} from '../utils/mutations';
 import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import {GET_ME} from '../utils/queries';
 
 const SearchBooks = () => { 
-  const loggedIn = Auth.loggedIn();
+ 
+ 
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
@@ -16,7 +18,9 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
-  const [saveBook , { error}] = useMutation(SAVE_BOOK);
+  const [saveBooks,{error}] = useMutation(SAVE_BOOK);
+
+  
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -76,8 +80,12 @@ const SearchBooks = () => {
     //   }
 
     try {
-      const {data} = await saveBook ({
-        variables: { input: bookToSave}
+      const {data} = await saveBooks ({
+        variables: { input: bookToSave},
+        updat: cache => {
+          const {me} = cache.readQuery ({query: GET_ME});
+          cache.writeQuery ({query:GET_ME, data: {me: {...me,saveBooks:[...me.saveBooks,bookToSave]}}})
+        }
       });
 
       if (error) {

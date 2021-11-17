@@ -26,7 +26,7 @@
   "homepage": "https://github.com/billgeng/UT06-2021-BG-21-Book-Search-Engine#readme",
   "dependencies": {
     "16": "^0.0.2",
-    "@apollo/client": "^3.4.16",
+    "@apollo/client": "^3.4.17",
     "@reduxjs/toolkit": "^1.6.2",
     "apollo-boost": "^0.4.9",
     "apollo-react-hooks": "^0.0.1",
@@ -40,6 +40,7 @@
     "mongoose": "^6.0.12",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-hooks-lib": "^0.6.0",
     "web-vitals": "^2.1.2"
   }
 }
